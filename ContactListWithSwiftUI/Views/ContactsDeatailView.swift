@@ -12,22 +12,21 @@ struct ContactsDeatailView: View {
     let person: Person
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-
+    
     var btnBack : some View { Button(action: {
-            self.presentationMode.wrappedValue.dismiss()
-            }) {
-                HStack {
-                Image(systemName: "chevron.left")
-                        .foregroundColor(.blue)
-                    .aspectRatio(contentMode: .fit)
-                    .foregroundColor(.white)
-                    Text("Back")
-                }
-            }
+        self.presentationMode.wrappedValue.dismiss()
+    }) {
+        HStack {
+            Image(systemName: "chevron.left")
+                .foregroundColor(.blue)
+                .aspectRatio(contentMode: .fit)
+            Text("Back")
         }
+    }
+    }
     
     var body: some View {
-
+        
         List {
             HStack{
                 Spacer()
