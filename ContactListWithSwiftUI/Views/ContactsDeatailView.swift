@@ -17,11 +17,11 @@ struct ContactsDeatailView: View {
             self.presentationMode.wrappedValue.dismiss()
             }) {
                 HStack {
-                Image(systemName: "lessthan")
+                Image(systemName: "chevron.left")
                         .foregroundColor(.blue)
                     .aspectRatio(contentMode: .fit)
                     .foregroundColor(.white)
-                    Text("Go back")
+                    Text("Back")
                 }
             }
         }
