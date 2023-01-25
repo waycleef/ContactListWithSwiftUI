@@ -12,7 +12,7 @@ struct ContactsDeatailView: View {
     let person: Person
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    
+
     var btnBack : some View { Button(action: {
             self.presentationMode.wrappedValue.dismiss()
             }) {
@@ -53,7 +53,12 @@ struct ContactsDeatailView: View {
         }
         .navigationTitle(person.title)
         .navigationBarBackButtonHidden(true)
-        .navigationBarItems(leading: btnBack)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+                btnBack
+            }
+            
+        }
     }
 }
 
