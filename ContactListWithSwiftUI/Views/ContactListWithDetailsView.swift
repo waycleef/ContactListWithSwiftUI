@@ -15,16 +15,8 @@ struct ContactListWithDetailsView: View {
         NavigationStack {
             List(persons, id: \.id) { person in
                 Section(header: Text(person.title)) {
-                    HStack{
-                        Image(systemName: "phone")
-                            .foregroundColor(.blue)
-                        Text(person.phone)
-                    }
-                    HStack{
-                        Image(systemName: "tray")
-                            .foregroundColor(.blue)
-                        Text(person.email)
-                    }
+                    Label("\(person.phone)", systemImage: "phone")
+                    Label("\(person.email)", systemImage: "tray")
                 }
             }
             .navigationTitle("Contact List")

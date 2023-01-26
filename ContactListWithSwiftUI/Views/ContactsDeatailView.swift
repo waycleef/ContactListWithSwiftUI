@@ -9,22 +9,10 @@ import SwiftUI
 
 struct ContactsDeatailView: View {
     
-    let person: Person
-    
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
-    var btnBack : some View { Button(action: {
-        self.presentationMode.wrappedValue.dismiss()
-    }) {
-        HStack {
-            Image(systemName: "chevron.left")
-                .foregroundColor(.blue)
-                .aspectRatio(contentMode: .fit)
-            Text("Back")
-        }
-    }
-    }
-    
+    let person: Person
+        
     var body: some View {
         
         List {
@@ -36,19 +24,8 @@ struct ContactsDeatailView: View {
                     .padding()
                 Spacer()
             }
-            
-            
-            HStack {
-                Image(systemName: "phone")
-                    .foregroundColor(.blue)
-                Text(person.phone)
-            }
-            
-            HStack {
-                Image(systemName: "tray")
-                    .foregroundColor(.blue)
-                Text(person.email)
-            }
+            Label("\(person.phone)", systemImage: "phone")
+            Label("\(person.email)", systemImage: "tray")
         }
         .navigationTitle(person.title)
         .navigationBarBackButtonHidden(true)
@@ -59,10 +36,22 @@ struct ContactsDeatailView: View {
             
         }
     }
+    
+    private var btnBack : some View { Button(action: {
+        self.presentationMode.wrappedValue.dismiss()
+    }) {
+        HStack {
+            Image(systemName: "chevron.left")
+                .foregroundColor(.blue)
+                .aspectRatio(contentMode: .fit)
+            Text("Back")
+        }
+    }
+    }
 }
 
 struct ContactsDeatailView_Previews: PreviewProvider {
     static var previews: some View {
-        ContactsDeatailView(person: Person.getContactList()[0])
+        ContactsDeatailView(person: Person.getContactList().first!)
     }
 }

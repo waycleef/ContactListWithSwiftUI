@@ -22,46 +22,32 @@ struct Person {
 
 extension Person {
     static func getContactList() -> [Person] {
-        var id = DataStore.shared.id
-        var names = DataStore.shared.names
-        var surnames = DataStore.shared.surnames
-        var phones = DataStore.shared.phones
-        var emails = DataStore.shared.emails
-        
         var persons: [Person] = []
-        for _ in 0..<names.count {
-            var idValue = 0
-            var nameValue = ""
-            var surnameValue = ""
-            var phoneValue = ""
-            var emailValue = ""
+        
+        let names = DataStore.shared.names.shuffled()
+        let surnames = DataStore.shared.surnames.shuffled()
+        let phones = DataStore.shared.phones.shuffled()
+        let emails = DataStore.shared.emails.shuffled()
+
+        
+        let iterationCount = min(
+            names.count,
+            surnames.count,
+            emails.count,
+            phones.count
+        )
+        
+        for index in 0..<iterationCount {
+            let person = Person(
+                id: index + 1,
+                name: names[index],
+                surname: surnames[index],
+                phone: phones[index],
+                email: emails[index]
+            )
             
-            if let idIndex = id.indices.randomElement() {
-                idValue = id.remove(at: idIndex)
-            }
-            
-            if let nameIndex = names.indices.randomElement() {
-                nameValue = names.remove(at: nameIndex)
-            }
-            
-            if let surnameIndex = surnames.indices.randomElement() {
-                surnameValue = surnames.remove(at: surnameIndex)
-            }
-            
-            if let phoneIndex = phones.indices.randomElement() {
-                phoneValue = phones.remove(at: phoneIndex)
-            }
-            
-            if let emailIndex = emails.indices.randomElement() {
-                emailValue = emails.remove(at: emailIndex)
-            }
-            
-            persons.append(Person(id: idValue,
-                                  name: nameValue,
-                                  surname: surnameValue,
-                                  phone: phoneValue,
-                                  email: emailValue))
-            
+            persons.append(person)
+
         }
         return persons
     }
